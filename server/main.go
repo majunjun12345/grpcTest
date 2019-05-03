@@ -84,13 +84,7 @@ func main() {
 }
 
 /*
-	总结：
-	前两种都是基于 http 的 rpc 调用，客户端使用 rpc.DialHTTP 即可
-	第三种属于基于 tcp rpc 调用，需要阻塞不断接收连接，客户端使用 rpc.Dial
-
-	使用 jsonrpc 将 rpc 换成 jsonrpc 即可
-	rpc 默认使用 gob 编码，jsonrpc 默认使用 json 编码
-
+	server:
 	定义一个对象
 	对象的方法必须是可导出的
 	方法接收两个参数，一个是请求参数，一个是响应参数，响应参数必须是指针类型；
@@ -101,7 +95,20 @@ func main() {
 	将对象注册进 rpc
 	开启 http 或 tcp 服务
 
+	client:
 	client 端构造与 server 一致的请求响应结构体
 	建立 tcp 或 http 连接
 	通过连接进行 rpc 调用，第一个参数是对象的方法(字符串形式)，第二三个参数分别是请求响应参数，响应参数是指针形式
+
+	http 和 tcp：
+	前两种都是基于 http 的 rpc 调用，客户端使用 rpc.DialHTTP 即可
+	第三种属于基于 tcp rpc 调用，需要阻塞不断接收连接，客户端使用 rpc.Dial
+
+	jsonrpc：
+	使用 jsonrpc 将 rpc 换成 jsonrpc 即可
+	rpc 默认使用 gob 编码，jsonrpc 默认使用 json 编码
+
+	同步异步：
+	同步异步是针对客户端而言的，同步调用直到有结果返回才能执行下一步
+	异步发出调用信号后就可以做其他事情了，可以通过 chan 获取返回结果
 */
