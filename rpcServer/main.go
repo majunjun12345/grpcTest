@@ -91,7 +91,7 @@ func main() {
 	请求结构体和响应结构体字段也必须是可导出的；
 	返回一个 error
 
-	创建新对象，必须用 new，返回一个指针
+	创建新对象，必须用 new，返回一个指针;  helloServer := helloService{} var helloServer helloService 也可以
 	将对象注册进 rpc
 	开启 http 或 tcp 服务
 
